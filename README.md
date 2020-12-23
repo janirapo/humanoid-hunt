@@ -1,2 +1,3 @@
 # humanoid-hunt
-https://hunt.reaktor.com/
+
+My attempt at solving the puzzles at https://hunt.reaktor.com/
