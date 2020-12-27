@@ -1,17 +1,12 @@
 import * as x from '..';
 
 describe('puzzle one', () => {
-  describe('splitAndReverse', () => {
+  describe('split', () => {
     it('splits given string into arrays of 8 characters', () => {
-      const result = x.splitAndReverse('1234567891234567');
+      const result = x.split('1234567891234567');
       expect(result).toHaveLength(2);
       expect(result[0]).toHaveLength(8);
       expect(result[1]).toHaveLength(8);
-    });
-
-    it('reverses the contents of all returned arrays', () => {
-      const result = x.splitAndReverse('1234567891234567');
-      expect(result).toEqual(['87654321', '76543219']);
     });
   });
 
@@ -26,23 +21,23 @@ describe('puzzle one', () => {
   });
 
   describe('extractInvalid', () => {
-    it('works with simple array', () => {
-      const value = [2, 3, 4, 5];
-      expect(x.extractInvalid(value)).toEqual(5);
+    it("returns last element's value", () => {
+      const value = [1, 2, 3, 4];
+      expect(x.extractInvalid(value)).toEqual(4);
     });
 
-    it('works when first value is out of bounds', () => {
+    it('works when second value is out of bounds', () => {
       const value = [13, 3, 4, 5];
       expect(x.extractInvalid(value)).toEqual(5);
     });
 
     it('works when first and seconde values are out of bounds', () => {
-      const value = [13, 6, 4, 5];
-      expect(x.extractInvalid(value)).toEqual(5);
+      const value = [13, 6, 1, 7, 9];
+      expect(x.extractInvalid(value)).toEqual(6);
     });
 
     it('works when second match is out of bounds', () => {
-      const value = [13, 3, 34, 5];
+      const value = [13, 2, 34, 5];
       expect(x.extractInvalid(value)).toEqual(34);
     });
 
@@ -89,7 +84,7 @@ describe('puzzle one', () => {
         70,
         240,
       ];
-      expect(x.extractInvalid(value)).toEqual(214);
+      expect(x.extractInvalid(value)).toEqual(198);
     });
   });
 
@@ -101,7 +96,7 @@ describe('puzzle one', () => {
 
   describe('solveAll', () => {
     it('print result', () => {
-      console.log(x.solvePuzzle());
+      expect(x.solvePuzzle()).toEqual('left-ventricle');
     });
   });
 });

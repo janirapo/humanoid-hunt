@@ -1,27 +1,39 @@
 import data from './data';
 
-export const splitAndReverse = (full: string): string[] => {
+/**
+ * split string by every 8 characters and return values as new array
+ */
+export const split = (full: string): string[] => {
   const result = [];
   for (let x = 0; x < full.length; x = x + 8) {
     const part = full.substring(x, x + 8);
-    result.push(part.split('').reverse().join(''));
+    result.push(part.split('').join(''));
   }
   return result;
 };
 
+/**
+ * convert binary string to decimal number
+ */
 export const bin2dec = (binary: string): number => parseInt(binary, 2);
 
+/**
+ * start from the beginning and find first value that references
+ * a valid element index. Than follow the value of that index to the next value
+ * and so on, until you reach an invalid index. Return this invalid index.
+ */
 export const extractInvalid = (numbers: number[]): number => {
   const elementCount = numbers.length;
   let start = 99999;
-  let index = 0;
+  let index = -1;
   do {
-    start = numbers[index];
     index++;
+    start = numbers[index];
   } while (start > elementCount);
+
   do {
-    index = numbers[index - 1];
-  } while (index <= elementCount);
+    index = numbers[index];
+  } while (!!numbers[index] && index !== numbers[index]);
   return index;
 };
 
@@ -32,7 +44,7 @@ export const extractInvalid = (numbers: number[]): number => {
  * This invalid number contributes one character to the password.
  */
 const solveOne = (row: string): number => {
-  const numbers = splitAndReverse(row).map(bin2dec);
+  const numbers = split(row).map(bin2dec);
   const result = extractInvalid(numbers);
   return result;
 };
@@ -43,7 +55,6 @@ export const number2Character = (code: number): string => {
 
 export const solvePuzzle = (): string => {
   const numbers = data.map(solveOne);
-  console.log(numbers.join());
   const characters = numbers.map(number2Character).join('');
   return characters;
 };
