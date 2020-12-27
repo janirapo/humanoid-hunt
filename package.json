@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --forceExit --detectOpenHandles --verbose",
-    "dev:one" : "NODE_ENV=development ts-node-dev --respawn --transpile-only ./src/puzzle-one/index.ts"
+    "dev:one" : "NODE_ENV=development ts-node-dev --respawn --transpile-only ./src/puzzle-one/index.ts",
+    "dev:two" : "NODE_ENV=development ts-node-dev --respawn --transpile-only ./src/puzzle-two/index.ts"
   },
   "repository": {
     "type": "git",
